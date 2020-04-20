@@ -5,13 +5,13 @@ static void	string_width(char *buffer, t_flags *flags)
 	char	*tmp;
 	int		len;
 
-	len = strlen(buffer);
+	len = ft_strlen(buffer);
 	if (len < flags->width)
 	{
 		tmp = malloc(flags->width + 1);
-		memset(tmp, !flags->zero  || flags->specifier == 's' ?
+		ft_memset(tmp, !flags->zero  || flags->specifier == 's' ?
 		' ' : '0', flags->width);
-		memcpy(tmp + (flags->minus ? 0 : (flags->width - len)), buffer, len);
+		ft_memcpy(tmp + (flags->minus ? 0 : (flags->width - len)), buffer, len);
 		tmp[flags->width] = 0;
 		add_buffer(tmp, flags);
 		free(tmp);
@@ -27,10 +27,10 @@ void		string(t_flags *flags, va_list ap)
 	v = va_arg(ap, char *);
 	if (!v)
 		v = "(null)";
-	if (flags->precision > -1 && flags->precision < (int)strlen(v))
-		v = strndup(v, flags->precision);
+	if (flags->precision > -1 && flags->precision < (int)ft_strlen(v))
+		v = ft_strndup(v, flags->precision);
 	else
-		v = strdup(v);
+		v = ft_strdup(v);
 	string_width(v, flags);
 	free(v);
 }
@@ -62,10 +62,10 @@ void		u_number(t_flags *flags, va_list ap)
 		str_to_upper(s);
 	if (flags->specifier == 'p')
 	{
-		tmp = malloc(strlen(s) + 3);
+		tmp = malloc(ft_strlen(s) + 3);
 		tmp[0] = '0';
 		tmp[1] = 'x';
-		strcat(tmp, s);
+		ft_strcat(tmp, s);
 	}
 	else
 		tmp = number_precision(s, flags->precision);
@@ -81,12 +81,12 @@ void		single_letter(t_flags *flags, va_list ap)
 	char	buffer[flags->width ? flags->width + 1 : 2];
 
 	buffer[flags->width ? flags->width : 1] = 0;
-	memset(buffer, flags->zero ? '0' : ' ', flags->width);
+	ft_memset(buffer, flags->zero ? '0' : ' ', flags->width);
 	v = flags->specifier == '%' ? '%' : va_arg(ap, int);
 	if (flags->minus || flags->width == 1)
 		buffer[0] = v;
 	else
 		buffer[flags->width ? flags->width - 1 : 0] = v;
-	strcat(flags->buffer, buffer);
-	flags->buf_len += strlen(buffer);
+	ft_strcat(flags->buffer, buffer);
+	flags->buf_len += ft_strlen(buffer);
 }

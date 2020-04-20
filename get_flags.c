@@ -37,7 +37,7 @@ int				get_value(const char **fmt, va_list ap, int init_value)
 	}
 	else if ((init_value ? *(*fmt) >= '0' : *(*fmt) > '0') && *(*fmt) <= '9')
 	{
-		number = atoi(*fmt);
+		number = ft_atoi(*fmt);
 		while (*(*fmt) && *(*fmt) >= '0' && *(*fmt) <= '9')
 			++(*fmt);
 	}

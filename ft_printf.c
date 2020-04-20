@@ -5,7 +5,7 @@ int		ft_printf(const char *fmt, ...)
 	t_flags	flags;
 	va_list	ap;
 
-	memset(&flags, 0, sizeof(flags));
+	ft_memset(&flags, 0, sizeof(flags));
 	flags.fd = 1;
 	va_start(ap, fmt);
 	while (*fmt)
@@ -47,13 +47,13 @@ void	flush_buffer(t_flags *flags)
 	write(flags->fd, flags->buffer, flags->buf_len);
 	flags->total += flags->buf_len;
 	flags->buf_len = 0;
-	memset(flags->buffer, 0, sizeof(flags->buffer));
+	ft_memset(flags->buffer, 0, sizeof(flags->buffer));
 }
 
 void	add_buffer(const char *buf, t_flags *flags)
 {
-	if (strlen(buf) + flags->buf_len > sizeof(flags->buffer) - 1)
+	if (ft_strlen(buf) + flags->buf_len > sizeof(flags->buffer) - 1)
 		flush_buffer(flags);
-	strcat(flags->buffer, buf);
-	flags->buf_len += strlen(buf);
+	ft_strcat(flags->buffer, buf);
+	flags->buf_len += ft_strlen(buf);
 }

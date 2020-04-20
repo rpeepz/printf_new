@@ -13,7 +13,7 @@ char				*utoa_base(unsigned long n, int base)
 	while (tmp /= base)
 		++len;
 	s = malloc(len + 1);
-	memset(s, 0, len + 1);
+	ft_memset(s, 0, len + 1);
 	while (len--)
 	{
 		s[len] = g_base[(n % base)];
@@ -34,7 +34,7 @@ char				*itoa_base(long n, int base)
 		++len;
 	len += base == 10 && n < 0 ? 1 : 0;
 	s = malloc(len + 1);
-	memset(s, 0, len + 1);
+	ft_memset(s, 0, len + 1);
 	tmp = n < 0 ? -n : n;
 	while (len--)
 	{
@@ -85,13 +85,13 @@ char				*number_precision(char *buffer, int precision)
 	char	*tmp;
 	int		len;
 
-	len = strlen(buffer);
+	len = ft_strlen(buffer);
 	if (precision > len)
 	{
 		tmp = malloc(precision + 1);
-		memset(tmp, '0', precision);
+		ft_memset(tmp, '0', precision);
 		tmp[precision] = 0;
-		memcpy(tmp + (precision - len), buffer, len);
+		ft_memcpy(tmp + (precision - len), buffer, len);
 		return (tmp);
 	}
 	return (NULL);

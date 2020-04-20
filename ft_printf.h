@@ -3,7 +3,6 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
-# include <string.h>
 # include <unistd.h>
 
 typedef struct	s_flags
@@ -45,4 +44,13 @@ int				get_value(const char **fmt, va_list ap, int init_value);
 void			get_flags(const char **fmt, t_flags *flags);
 void			get_length(const char **fmt, t_flags *flags);
 void			get_specifier(const char **fmt, t_flags *flags);
+
+int				ft_atoi(const char *str);
+void			*ft_memcpy(void *dst, const void *src, size_t n);
+void			*ft_memset(void *b, int c, size_t len);
+char			*ft_strndup(const char *s1, size_t n);
+char			*ft_strdup(const char *s1);
+char			*ft_strcat(char *s1, const char *s2);
+size_t			ft_strlen(const char *str);
+
 #endif

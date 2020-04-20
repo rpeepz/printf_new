@@ -5,7 +5,8 @@ INC = ft_printf.h
 SRC = ft_printf.c \
 	buffer.c \
 	get_flags.c \
-	utils.c
+	utils.c \
+	libft.c
 
 OBJ = $(patsubst %.c,%.o,$(SRC))
 
